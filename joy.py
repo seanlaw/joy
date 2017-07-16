@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from bokeh.plotting import figure
-from bokeh.models import ColumnDataSource, Slider
+from bokeh.models import ColumnDataSource, Slider, Range1d
 from bokeh.layouts import layout
 from bokeh.io import curdoc
 from scipy.stats import gaussian_kde
@@ -28,16 +28,16 @@ def get_movie_data(df, spacing=0.0):
 
 cds = ColumnDataSource(get_movie_data(df))
 
-#p = figure(plot_width=1200, plot_height=500)
 p = figure()
 p.patches(xs='xs', ys='ys', source=cds, fill_color='grey')
 p.multi_line(xs='xs', ys='ys', source=cds, color='black')
+p.x_range = Range1d(0, 200)
 
 def slider_update(attrname, old, new):
     spacing = s.value
     cds.data = get_movie_data(df, spacing)
     
-s = Slider(start=0.0, end=0.06, value=0.0, step=.0001)
+s = Slider(start=0.0, end=0.01, value=0.0, step=.0001)
 s.on_change('value', slider_update)
 
 l = layout([[p], [s]], sizing_mode='stretch_both')
