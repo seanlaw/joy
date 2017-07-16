@@ -22,5 +22,5 @@ bokeh serve --show joy.py
 ```
 
 # References
-[R implementation](https://github.com/clauswilke/ggjoy)
-[Seaborn implementation](https://github.com/mwaskom/seaborn/pull/1238)
+[R implementation](https://github.com/clauswilke/ggjoy)<br/>
+[Seaborn implementation](https://github.com/mwaskom/seaborn/pull/1238)<br/>
