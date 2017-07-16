@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from bokeh.plotting import figure
-from bokeh.models import ColumnDataSource, Slider, Range1d
+from bokeh.models import ColumnDataSource, Slider, Range1d, PrintfTickFormatter
 from bokeh.layouts import layout
 from bokeh.io import curdoc
 from scipy.stats import gaussian_kde
@@ -32,6 +32,10 @@ p = figure()
 p.patches(xs='xs', ys='ys', source=cds, fill_color='grey')
 p.multi_line(xs='xs', ys='ys', source=cds, color='black')
 p.x_range = Range1d(0, 200)
+p.yaxis[0].formatter = PrintfTickFormatter(format=".")
+p.yaxis[0].ticker.desired_num_ticks = 0
+p.xaxis.axis_label = 'Movie Length (minutes)'
+p.yaxis.axis_label = 'Movie Year (increasing vertically)'
 
 def slider_update(attrname, old, new):
     spacing = s.value
